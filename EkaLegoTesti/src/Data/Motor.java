@@ -9,6 +9,7 @@ public class Motor implements Runnable{
 	public String nimi;
 	
 	UnregulatedMotor motorA = new UnregulatedMotor(MotorPort.A);
+	UnregulatedMotor motorD = new UnregulatedMotor(MotorPort.D);
 
 	@Override
 	public void run() {
@@ -16,6 +17,8 @@ public class Motor implements Runnable{
 		System.out.println(nimi + " start");
 		motorA.setPower(50);
 		motorA.forward();
+		motorD.setPower(50);
+		motorD.forward();
 		
 	}
 	
