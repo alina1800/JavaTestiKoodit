@@ -15,7 +15,7 @@ public class Motor implements Runnable{
 	public void run() {
 		
 		System.out.println(nimi + " start");
-		motorA.setPower(50);
+		motorA.setPower(25);
 		motorA.forward();
 		motorD.setPower(50);
 		motorD.forward();
