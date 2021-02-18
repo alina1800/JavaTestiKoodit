@@ -8,7 +8,7 @@ public class LegoAppTesti {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		
+		System.out.println("Hei, tervetuloa kaikki!");
 		System.out.println("Moi Jenni!");
 		System.out.println("Moi Liisa!");
 		System.out.println("Moi Alina!");
