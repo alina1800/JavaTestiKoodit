@@ -54,10 +54,60 @@ public class LightSensor implements Runnable{
 			System.out.println("Red: " + (colorSample[0]*1000));
 			System.out.println("Green: " + (colorSample[1]*1000));
 			System.out.println("Blue: " + (colorSample[2]*1000));
-			Delay.msDelay(250);
+			float colorLine = colorSample[2]*1000;
+			Delay.msDelay(10);
+			
+			//Haetaan myˆs punainen v‰ri pys‰ytyst‰ varten
+			
+			int colorRed = Color.RED;
+			int currentColor = sensor.getColorID();
 		
+			//Tehd‰‰n if-lauseet, jotta robotti pysyisi viivan tuntumassa
+			//Jos v‰ri on punainen pys‰ytet‰‰n robotti
+			motorA.setPower(30);
+			motorD.setPower(30);
+			//motorA.forward();
+			//motorD.forward();
+			
+		
+			if(colorLine > 70)  //Jos valkoisella
+			{
+				motorA.setPower(30);
+				motorD.setPower(0);
+				motorA.forward();
+				motorD.forward();
+			}
+			else if(colorLine < 30)  //Jos mustalla
+			{
+				motorA.setPower(0);
+				motorD.setPower(30);
+				motorA.forward();
+				motorD.forward();
+			}
+			else if(currentColor == colorRed)  //Jos v‰ri on punainen, pys‰hdyt‰‰n ja lopetetaan loop
+			{
+				motorA.setPower(0);
+				motorD.setPower(0);
+				motorA.close();
+				motorD.close();
+				sensor.close();
+				break;
+			}
+			else if(colorLine < 70 && colorLine > 30)  //Jos viivalla
+			{
+				motorA.setPower(30);
+				motorD.setPower(30);
+				motorA.forward();
+				motorD.forward();
+			}
+			
+			
+			
+			
 			//Eri v‰rien haku, mutta t‰t‰ ei kannata k‰ytt‰‰, vaan valon intensiivisyytt‰ (light intensity)
-			int colorBlack = Color.BLACK;
+			//J‰t‰n t‰m‰n t‰h‰n testej‰ varten
+			
+			/* int colorBlack = Color.BLACK;
 			int colorWhite = Color.WHITE;
 			
 			int currentColor = sensor.getColorID();
@@ -75,11 +125,11 @@ public class LightSensor implements Runnable{
 				motorD.setPower(30);
 				motorA.backward();
 				motorD.backward();
-			}
+			} */
 		}
 		
-		motorA.close();
-		motorD.close();
+		//motorA.close();
+		//motorD.close();
 		
 		
 	}
