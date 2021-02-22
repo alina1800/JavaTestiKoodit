@@ -1,16 +1,19 @@
 package App;
-import Data.*;
 
-import lejos.hardware.Button;
-import lejos.hardware.lcd.LCD;
+import Data.*;
+import lejos.hardware.motor.UnregulatedMotor;
+import lejos.hardware.port.MotorPort;
 import lejos.hardware.port.SensorPort;
 import lejos.utility.Delay;
 
-public class LegoAppTesti {
+public class UltraTesti {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+	
 		
+		UnregulatedMotor motorA = new UnregulatedMotor(MotorPort.A);
+		UnregulatedMotor motorD = new UnregulatedMotor(MotorPort.D);
+
 		float                range;
         UltraSonicSensor     uss = new UltraSonicSensor(SensorPort.S4);
         
@@ -34,34 +37,17 @@ public class LegoAppTesti {
             
             //Käynnistetään myös moottori
             
-    		
+            motorA.setPower(50);
+    		motorA.forward();
+    		motorD.setPower(50);
+    		motorD.forward();
         }
         
         // free up resources.
        
+        motorA.close();
+        motorD.close();
         uss.close();
-		
-	/*	System.out.println("Hei, tervetuloa!");
-		
-		System.out.println("Moi Jenni!");
-		System.out.println("Moi Liisa!");
-		System.out.println("Moi Alina!");
-		System.out.println("Moi Sanna!");
-	
-		Motor moottori1 = new Motor("Moottori 1");
-		
-		Thread motorThread = new Thread(moottori1);
-	
-		motorThread.start(); 
-		
-		Button.waitForAnyPress();
-		
-		
-		*/
-		Button.waitForAnyPress();
-		
-		
-
 	}
 
 }
