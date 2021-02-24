@@ -1,8 +1,12 @@
 package Data;
 
+import java.io.File;
+
 import lejos.hardware.BrickFinder;
+import lejos.hardware.Sound;
 import lejos.hardware.Button;
 import lejos.hardware.lcd.LCD;
+import lejos.hardware.motor.EV3MediumRegulatedMotor;
 import lejos.hardware.motor.UnregulatedMotor;
 import lejos.hardware.port.MotorPort;
 import lejos.hardware.port.Port;
@@ -18,6 +22,7 @@ public class LightSensor implements Runnable{
 	EV3ColorSensor sensor;
 	SampleProvider colorProvider;
 	float[] colorSample;
+	Sound soundPlayer;
 	
 	public LightSensor()
 	{
@@ -30,10 +35,12 @@ public class LightSensor implements Runnable{
 		
 	//	LCD.clear();
 	//	LCD.drawString("Color sensor on", 2,2);
+	
 		
 		//Tehd‰‰n moottorit testi‰ varten, jotta niit‰ voidaan k‰ytt‰‰ k‰‰ntymisess‰
-		UnregulatedMotor motorA = new UnregulatedMotor(MotorPort.A);
-		UnregulatedMotor motorD = new UnregulatedMotor(MotorPort.D);
+		UnregulatedMotor motorA = new UnregulatedMotor(MotorPort.A);  //Oikea pyˆr‰
+		EV3MediumRegulatedMotor motorB = new EV3MediumRegulatedMotor(MotorPort.B);     // Lippu
+		UnregulatedMotor motorD = new UnregulatedMotor(MotorPort.D);  //Vasen pyˆr‰
 		
 		//Luodaan portti s1
        Port s1 = BrickFinder.getLocal().getPort("S1");
@@ -42,6 +49,9 @@ public class LightSensor implements Runnable{
 		sensor = new EV3ColorSensor(s1);
 		colorProvider = sensor.getRGBMode();
 		colorSample = new float[colorProvider.sampleSize()];
+
+		//‰‰nitiedostot
+		 File soundFileEnd = new File("C:/temp/loppu.wav");
 		
 		
 		while(Button.ESCAPE.isUp())
@@ -62,37 +72,45 @@ public class LightSensor implements Runnable{
 			int colorRed = Color.RED;
 			int currentColor = sensor.getColorID();
 		
+		
 			//Tehd‰‰n if-lauseet, jotta robotti pysyisi viivan tuntumassa
 			//Jos v‰ri on punainen pys‰ytet‰‰n robotti
-			motorA.setPower(30);
-			motorD.setPower(30);
-			//motorA.forward();
-			//motorD.forward();
 			
-		
 			if(colorLine > 70)  //Jos valkoisella
 			{
 				motorA.setPower(30);
-				motorD.setPower(0);
+				motorD.setPower(10);
 				motorA.forward();
 				motorD.forward();
 			}
 			else if(colorLine < 30)  //Jos mustalla
 			{
-				motorA.setPower(0);
+				motorA.setPower(10);
 				motorD.setPower(30);
 				motorA.forward();
 				motorD.forward();
 			}
 			else if(currentColor == colorRed)  //Jos v‰ri on punainen, pys‰hdyt‰‰n ja lopetetaan loop
-			{
+			{								   //Lis‰ksi soitetaan ‰‰ni ja pyˆritet‰‰n lippua
 				motorA.setPower(0);
 				motorD.setPower(0);
 				motorA.close();
 				motorD.close();
-				sensor.close();
-				break;
-			}
+				motorB.setSpeed(100);
+				motorB.rotate(45);  //lippu pyˆrii kierroksen. Voi pyˆritt‰‰ myˆs esim 720 eli kaksi kierrosta
+				motorB.rotate(-45);
+				motorB.rotate(45);  
+				motorB.rotate(-45);
+				motorB.rotate(45);  
+				motorB.rotate(-45);
+				Sound.systemSound(false, 3); //Soitetaan ‰‰ni
+				Delay.msDelay(40);
+				Sound.twoBeeps();
+			    Delay.msDelay(40);
+				Sound.systemSound(false, 3);;
+				sensor.close();  //Sensori kiinni
+				break;           //Poistutaan while-loopista
+			} 
 			else if(colorLine < 70 && colorLine > 30)  //Jos viivalla
 			{
 				motorA.setPower(30);
@@ -100,38 +118,9 @@ public class LightSensor implements Runnable{
 				motorA.forward();
 				motorD.forward();
 			}
-			
-			
-			
-			
-			//Eri v‰rien haku, mutta t‰t‰ ei kannata k‰ytt‰‰, vaan valon intensiivisyytt‰ (light intensity)
-			//J‰t‰n t‰m‰n t‰h‰n testej‰ varten
-			
-			/* int colorBlack = Color.BLACK;
-			int colorWhite = Color.WHITE;
-			
-			int currentColor = sensor.getColorID();
-			
-			if(currentColor == colorBlack)
-			{
-				motorA.setPower(30);
-				motorD.setPower(30);
-				motorA.forward();
-				motorD.forward();
-			}
-			else if(currentColor == colorWhite)
-			{
-				motorA.setPower(30);
-				motorD.setPower(30);
-				motorA.backward();
-				motorD.backward();
-			} */
+		
 		}
-		
-		//motorA.close();
-		//motorD.close();
-		
-		
+
 	}
 
 }
