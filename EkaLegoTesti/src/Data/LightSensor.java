@@ -61,11 +61,12 @@ public class LightSensor implements Runnable{
 			//Värin arvon mukaan voidaan määrittää ollaanko mustalla vai valkoisella alueella
 			//Kun ollaan viivan reunalla light intensity on 35%
 			colorProvider.fetchSample(colorSample, 0);
-			System.out.println("Red: " + (colorSample[0]*1000));
-			System.out.println("Green: " + (colorSample[1]*1000));
-			System.out.println("Blue: " + (colorSample[2]*1000));
+			//System.out.println("Red: " + (colorSample[0]*1000));
+			//System.out.println("Green: " + (colorSample[1]*1000));
+			//System.out.println("Blue: " + (colorSample[2]*1000));
+			System.out.println("Värisensori");
 			float colorLine = colorSample[2]*1000;
-			Delay.msDelay(10);
+			Delay.msDelay(50);
 			
 			//Haetaan myös punainen väri pysäytystä varten
 			
@@ -109,6 +110,9 @@ public class LightSensor implements Runnable{
 			    Delay.msDelay(40);
 				Sound.systemSound(false, 3);;
 				sensor.close();  //Sensori kiinni
+				motorA.close();
+				motorB.close();
+				motorD.close();
 				break;           //Poistutaan while-loopista
 			} 
 			else if(colorLine < 70 && colorLine > 30)  //Jos viivalla
