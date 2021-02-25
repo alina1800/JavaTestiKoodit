@@ -1,4 +1,4 @@
-package App;
+/*package App;
 
 import Data.*;
 import lejos.hardware.motor.UnregulatedMotor;
@@ -28,8 +28,6 @@ public class UltraTesti {
         
         while (range > .25)
         {
-           // Lcd.clear(7, 7, 10);
-           // Lcd.print(7, 7, "%.3f", range);
         	System.out.println(range);
             Delay.msDelay(500);
 
@@ -42,12 +40,10 @@ public class UltraTesti {
     		motorD.setPower(50);
     		motorD.forward();
         }
-        
-        // free up resources.
        
         motorA.close();
         motorD.close();
         uss.close();
 	}
 
-}
+}*/

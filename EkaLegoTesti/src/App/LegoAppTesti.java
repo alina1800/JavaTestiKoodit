@@ -19,14 +19,11 @@ public class LegoAppTesti {
         
         range = uss.getRange();
 
-       // Lcd.print(7, "range=");
 
         // run until we find an obstacle within 1/4 of a meter.
         
         while (range > .25)
         {
-           // Lcd.clear(7, 7, 10);
-           // Lcd.print(7, 7, "%.3f", range);
         	System.out.println(range);
             Delay.msDelay(500);
 
@@ -49,11 +46,13 @@ public class LegoAppTesti {
 		System.out.println("Moi Sanna!");
 	
 		Motor moottori1 = new Motor("Moottori 1");
-		
+		//Distance distance1 = new Distance("Distance");
 		Thread motorThread = new Thread(moottori1);
-	
+		//Thread measureDistanceThread=new Thread(Distance);
+		 * 
 		motorThread.start(); 
-		
+		//measureDistanceThread.start();
+		 * 
 		Button.waitForAnyPress();
 		
 		
