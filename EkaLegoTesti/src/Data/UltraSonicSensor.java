@@ -19,7 +19,7 @@ package Data;
 		{
 			sensor = new EV3UltrasonicSensor(port);
 			sp = sensor.getDistanceMode();
-		    	sample = new float[sp.sampleSize()];
+		    sample = new float[sp.sampleSize()];
 		}
 
 		/**
