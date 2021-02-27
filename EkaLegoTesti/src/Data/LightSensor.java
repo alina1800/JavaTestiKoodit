@@ -29,6 +29,22 @@ public class LightSensor implements Runnable{
 		
 		
 	}
+	
+	public void LaskeAika()
+    {
+        long tm = System.currentTimeMillis();
+        try {
+            //Tähän tulee metodi minkä aika lasketaan
+        	
+        	run();
+        } finally {
+            tm = System.currentTimeMillis()-tm;
+            System.out.println("it has taken time to go around the track" + tm + "ms");
+        }
+       
+          
+          
+    }
 
 	@Override
 	public void run() {
@@ -51,7 +67,7 @@ public class LightSensor implements Runnable{
 		colorSample = new float[colorProvider.sampleSize()];
 
 		//äänitiedostot
-		 File soundFileEnd = new File("C:/temp/loppu.wav");
+		 File soundFileEnd = new File("C:/temp/loppu.wav"); //Vaihda 8bit
 		
 		
 		while(Button.ESCAPE.isUp())
@@ -66,8 +82,19 @@ public class LightSensor implements Runnable{
 			//System.out.println("Blue: " + (colorSample[2]*1000));
 			System.out.println("Värisensori");
 			float colorLine = colorSample[2]*1000;
-			Delay.msDelay(50);
+			//Delay.msDelay(10);
 			
+			//Säie nukutetaan 
+			
+			try
+			{
+				Thread.sleep(1);
+			}
+			catch(InterruptedException e)
+			{
+				e.printStackTrace();
+				
+			}
 			//Haetaan myös punainen väri pysäytystä varten
 			
 			int colorRed = Color.RED;
