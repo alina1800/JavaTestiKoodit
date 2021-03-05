@@ -29,6 +29,7 @@ public class LegoAppTesti {
 		ultraThread.start();
 		sensorThread.start();
 		
+		
 		//Button.waitForAnyPress();
 		
 		

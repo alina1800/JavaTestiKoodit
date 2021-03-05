@@ -19,7 +19,9 @@ public class ValoTestiApp {
 		Thread sensorThread = new Thread(sensor1);
 		
 		sensorThread.start(); 
-		sensor1.LaskeAika();
+		
+		
+		//sensor1.LaskeAika();
 
 		//Button.waitForAnyPress();
 		

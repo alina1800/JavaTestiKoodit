@@ -25,13 +25,13 @@ public class Distance implements Runnable{
 		
 		while (range > .25)
         {
-			motorA.setPower(30);
-			motorD.setPower(30);
+			motorA.setPower(50);
+			motorD.setPower(50);
 			motorA.forward();
 			motorD.forward();
         	System.out.println(range);
         	System.out.println("Ultrasensori");
-            Delay.msDelay(10);
+            Delay.msDelay(1);
 
             range = uss.getRange();
         }
@@ -39,7 +39,7 @@ public class Distance implements Runnable{
 		if (range < .25) { //Kun este on tarpeeksi lähellä, soitetaan ääni
 			Sound.systemSound(false, 3);
 			counter++;  //Lisätään counterin määrää, aina kun este on niin lähellä, että se pitää kiertää
-			System.out.println("Esteitä kohdattu" + counter);
+			System.out.println("Esteitä kohdattu " + counter);
 		}
 		
 		uss.close();

@@ -49,10 +49,16 @@ public class LightSensor implements Runnable{
 	@Override
 	public void run() {
 		
-	//	LCD.clear();
-	//	LCD.drawString("Color sensor on", 2,2);
-	
-		
+		try
+		{
+			Thread.sleep(1);
+		}
+		catch(InterruptedException e)
+		{
+			e.printStackTrace();
+			
+		}
+
 		//Tehd‰‰n moottorit testi‰ varten, jotta niit‰ voidaan k‰ytt‰‰ k‰‰ntymisess‰
 		UnregulatedMotor motorA = new UnregulatedMotor(MotorPort.A);  //Oikea pyˆr‰
 		EV3MediumRegulatedMotor motorB = new EV3MediumRegulatedMotor(MotorPort.B);     // Lippu
@@ -88,7 +94,7 @@ public class LightSensor implements Runnable{
 			
 			try
 			{
-				Thread.sleep(1);
+				Thread.sleep(10);
 			}
 			catch(InterruptedException e)
 			{
