@@ -18,20 +18,16 @@ public class ValoTestiApp {
 		LightSensor sensor1 = new LightSensor();
 		
 		Thread sensorThread = new Thread(sensor1);
-
+/*
 		//Ultrap‰‰n luonti
 		Distance ultraDistance = new Distance();
 		
 		Thread ultraThread = new Thread(ultraDistance);
 		
-		ultraThread.start(); 
+		ultraThread.start(); */
 		sensorThread.start();
 		//sensor1.LaskeAika();
 
-		//Button.waitForAnyPress();
-		
-		
-		
 
 	}
 

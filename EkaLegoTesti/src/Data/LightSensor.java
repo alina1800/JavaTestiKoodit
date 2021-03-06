@@ -16,8 +16,8 @@ import lejos.robotics.Color;
 import lejos.robotics.SampleProvider;
 import lejos.utility.Delay;
 
-
-public class LightSensor implements Runnable{
+//extends MotorFunctions
+public class LightSensor extends MotorFunctions implements Runnable{
 	
 	EV3ColorSensor sensor;
 	SampleProvider colorProvider;
@@ -60,9 +60,9 @@ public class LightSensor implements Runnable{
 		}
 
 		//Tehdään moottorit testiä varten, jotta niitä voidaan käyttää kääntymisessä
-		UnregulatedMotor motorA = new UnregulatedMotor(MotorPort.A);  //Oikea pyörä
+		//UnregulatedMotor motorA = new UnregulatedMotor(MotorPort.A);  //Oikea pyörä
 		EV3MediumRegulatedMotor motorB = new EV3MediumRegulatedMotor(MotorPort.B);     // Lippu
-		UnregulatedMotor motorD = new UnregulatedMotor(MotorPort.D);  //Vasen pyörä
+		//UnregulatedMotor motorD = new UnregulatedMotor(MotorPort.D);  //Vasen pyörä
 		
 		//Luodaan portti s1
        Port s1 = BrickFinder.getLocal().getPort("S1");
@@ -112,17 +112,20 @@ public class LightSensor implements Runnable{
 			
 			if(colorLine > 70)  //Jos valkoisella
 			{
-				motorA.setPower(30);
+				/*motorA.setPower(30);
 				motorD.setPower(10);
 				motorA.forward();
-				motorD.forward();
+				motorD.forward(); */
+				loivaVasen();
 			}
 			else if(colorLine < 30)  //Jos mustalla
 			{
-				motorA.setPower(10);
+				/*motorA.setPower(10);
 				motorD.setPower(30);
 				motorA.forward();
-				motorD.forward();
+				motorD.forward(); */
+				
+				loivaOikea();
 			}
 			else if(currentColor == colorRed)  //Jos väri on punainen, pysähdytään ja lopetetaan loop
 			{								   //Lisäksi soitetaan ääni ja pyöritetään lippua

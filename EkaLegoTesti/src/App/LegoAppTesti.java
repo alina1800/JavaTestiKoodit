@@ -26,7 +26,7 @@ public class LegoAppTesti {
 		
 		//Käynnistetään säikeet
         
-		//ultraThread.start();
+		ultraThread.start();
 		sensorThread.start();
 		
 		
