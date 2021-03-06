@@ -7,7 +7,7 @@ import lejos.utility.Delay;
 import lejos.hardware.motor.*;
 import lejos.hardware.Sound;
 
-public class Distance implements Runnable{
+public class Distance extends MotorFunctions implements Runnable{
 	
 	UnregulatedMotor motorA = new UnregulatedMotor(MotorPort.A);
 	UnregulatedMotor motorD = new UnregulatedMotor(MotorPort.D);
@@ -51,6 +51,7 @@ public class Distance implements Runnable{
 			Sound.systemSound(false, 3);
 			counter++;  //Lis‰t‰‰n counterin m‰‰r‰‰, aina kun este on niin l‰hell‰, ett‰ se pit‰‰ kiert‰‰
 			System.out.println("Esteit‰ kohdattu " + counter);
+			tiukkaOikea();
 		}
 		
 		uss.close();
