@@ -25,6 +25,7 @@ public class Distance implements Runnable{
 		
 		while (range > .25)
         {
+			//moi sanna
 			//motorA.setPower(30);
 			//motorD.setPower(30);
 			//motorA.forward();
