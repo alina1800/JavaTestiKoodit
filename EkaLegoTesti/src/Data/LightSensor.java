@@ -49,7 +49,7 @@ public class LightSensor implements Runnable{
 	@Override
 	public void run() {
 		
-		try
+		 try
 		{
 			Thread.sleep(1);
 		}
@@ -74,27 +74,27 @@ public class LightSensor implements Runnable{
 
 		//‰‰nitiedostot
 		 File soundFileEnd = new File("C:/temp/loppu.wav"); //Vaihda 8bit
+		 
+		
 		
 		
 		while(Button.ESCAPE.isUp())
 		{
+			
 			//Haetaan eri v‰rien arvot
 			//Tummilla v‰reill‰ on pienempi arvo, kuin vaaleilla
 			//V‰rin arvon mukaan voidaan m‰‰ritt‰‰ ollaanko mustalla vai valkoisella alueella
 			//Kun ollaan viivan reunalla light intensity on 35%
 			colorProvider.fetchSample(colorSample, 0);
-			//System.out.println("Red: " + (colorSample[0]*1000));
-			//System.out.println("Green: " + (colorSample[1]*1000));
-			//System.out.println("Blue: " + (colorSample[2]*1000));
 			System.out.println("V‰risensori");
 			float colorLine = colorSample[2]*1000;
-			//Delay.msDelay(10);
+			
 			
 			//S‰ie nukutetaan 
 			
 			try
 			{
-				Thread.sleep(10);
+				Thread.sleep(1);
 			}
 			catch(InterruptedException e)
 			{
@@ -141,11 +141,9 @@ public class LightSensor implements Runnable{
 				Delay.msDelay(40);
 				Sound.twoBeeps();
 			    Delay.msDelay(40);
-				Sound.systemSound(false, 3);;
+				Sound.systemSound(false, 3);
 				sensor.close();  //Sensori kiinni
-				motorA.close();
 				motorB.close();
-				motorD.close();
 				break;           //Poistutaan while-loopista
 			} 
 			else if(colorLine < 70 && colorLine > 30)  //Jos viivalla
@@ -156,8 +154,14 @@ public class LightSensor implements Runnable{
 				motorD.forward();
 			}
 		
-		}
+		} // while-sulje 
+		
+		/*for(int i = 0; i <5; i++)
+		{
+			System.out.println("Olen v‰risensori");
+		} */
+		
 
-	}
+	} //run-sulje 
 
 }

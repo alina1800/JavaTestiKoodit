@@ -25,13 +25,23 @@ public class Distance implements Runnable{
 		
 		while (range > .25)
         {
-			motorA.setPower(50);
-			motorD.setPower(50);
-			motorA.forward();
-			motorD.forward();
+			//motorA.setPower(30);
+			//motorD.setPower(30);
+			//motorA.forward();
+			//motorD.forward();
         	System.out.println(range);
         	System.out.println("Ultrasensori");
-            Delay.msDelay(1);
+           
+        	//Nukutetaan säie hetkeksi
+        	try
+			{
+				Thread.sleep(1);
+			}
+			catch(InterruptedException e)
+			{
+				e.printStackTrace();
+				
+			}
 
             range = uss.getRange();
         }
@@ -44,7 +54,12 @@ public class Distance implements Runnable{
 		
 		uss.close();
 		motorA.close();
-        motorD.close();
+        motorD.close(); 
+		
+		/*for(int i = 0; i <5; i++)
+		{
+			System.out.println("Olen ultrasensori");
+		} */
 		
 	}
 	
