@@ -39,7 +39,8 @@ public class LightSensor extends MotorFunctions implements Runnable{
         	run();
         } finally {
             tm = System.currentTimeMillis()-tm;
-            System.out.println("it has taken time to go around the track" + tm + "ms");
+            tm = tm/1000;
+            System.out.println("it has taken time to go around the track " + tm + " seconds");
         }
        
           
