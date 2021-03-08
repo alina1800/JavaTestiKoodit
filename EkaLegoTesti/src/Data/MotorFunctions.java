@@ -3,9 +3,6 @@ package Data;
 import java.util.Timer;
 import lejos.utility.Delay;
 
-/**
- * Moottoreille ohjelmoidut metodit, kuten viivan seuranta ja kääntymiset
- */
 
 public class MotorFunctions extends MotorInitializer{
 
@@ -29,7 +26,7 @@ public class MotorFunctions extends MotorInitializer{
 		Delay.msDelay(550);
 
 		/**
-		 * Estettä kierretään kunnes värisensori haistaa viivan
+		 * Esteen kierto värisensoria tutkien
 		 */
 		while (Main.programRunning) {
 			motorV.setPower(50);
@@ -40,7 +37,7 @@ public class MotorFunctions extends MotorInitializer{
 		}
 
 		/**
-		 * Korjaa viivalle saapumisen kulmaa
+		 * Viivalle takaisin korjaten kulmaa
 		 */
 		while (Main.programRunning) {
 			motorV.setPower(30);
@@ -71,12 +68,12 @@ public class MotorFunctions extends MotorInitializer{
 		motorV.forward();
 		
 		/**
-		 * Oikean renkaan moottorin pyörimisteho prosentteina (0-100)
+		 * Oikean renkaan moottorin pyörimisteho prosentteina
 		 */
 		motorO.setPower(60);
 		
 		/**
-		 * Vasemman renkaan moottorin pyörimisteho prosentteina (0-100)
+		 * Vasemman renkaan moottorin pyörimisteho prosentteina
 		 */
 		motorV.setPower(60);
 
@@ -97,7 +94,7 @@ public class MotorFunctions extends MotorInitializer{
 	}
 
 	/**
-	 * Tiukasti vasempaan kääntymisen funktio
+	 * Tiukka vasen
 	 */
 	public void tiukkaVasen() {
 		motorO.setPower(85);
@@ -105,7 +102,7 @@ public class MotorFunctions extends MotorInitializer{
 	}
 
 	/**
-	 * Tiukasti oikeaan kääntymisen funktio
+	 * Tiukka oikea
 	 */
 	public void tiukkaOikea() {
 		motorO.setPower(5);
@@ -113,7 +110,7 @@ public class MotorFunctions extends MotorInitializer{
 	}
 
 	/**
-	 * Loivasti vasempaan kääntymisen funktio
+	 * Loiva vasen
 	 */
 	public void loivaVasen() {
 		motorA.setPower(30);
@@ -121,7 +118,7 @@ public class MotorFunctions extends MotorInitializer{
 	}
 
 	/**
-	 * Loivasti oikeaan kääntymisen funktio
+	 * Loiva oikea
 	 */
 	public void loivaOikea() {
 		motorA.setPower(10);
@@ -129,15 +126,15 @@ public class MotorFunctions extends MotorInitializer{
 	}
 
 	/**
-	 * Optimaalisesti suoraan kulkemisen funktio
+	 * Suoraan
 	 */
 	public void suoraan() {
 		motorO.setPower(90);
 		motorV.setPower(90);
 	}
-
+	
 	/**
-	 * Pysähtymisen funktio
+	 * Pysähtyminen
 	 */
 	public static void Stop() {
 
@@ -147,10 +144,7 @@ public class MotorFunctions extends MotorInitializer{
 			public void run() {
 				stop = true;
 			}
-		
-		/**
-		 * 2s jälkeen suoritetaan yllä oleva funktio
-		 */
+			
 		}, 2000
 		);
 	}
